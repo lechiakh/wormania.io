@@ -1,0 +1,916 @@
+* {
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 14px;
+}
+
+html,
+body {
+    background-color: #000000;
+}
+
+html,
+body,
+canvas {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -ms-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.fade {
+    opacity: 0.8;
+    transition: opacity .15s ease-in-out;
+    -moz-transition: opacity .15s ease-in-out;
+    -webkit-transition: opacity .15s ease-in-out;
+}
+
+.fade:hover {
+    opacity: 1;
+}
+
+.tytt {
+    font-weight: bold;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+#thigh {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#skinList {
+    height: calc(100% - 112px);
+    max-height: 446px;
+    overflow: auto;
+    width: 494px;
+    position: absolute;
+    margin-left: 16px;
+    margin-right: 16px;
+    left: 196px;
+    right: 0;
+    top: 56px;
+}
+
+#demoplayer {
+    height: calc(100% - 256px);
+    max-height: 446px;
+    overflow: hidden;
+    width: 192px;
+    position: absolute;
+    left: 16px;
+    bottom: 16px;
+}
+
+#color1Selector {
+    display: none;
+}
+
+#color2Selector {
+    display: none;
+}
+
+#flagSelector {
+    display: none;
+}
+
+.colordemo {
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    top: 4px;
+    right: 10px;
+    border: 2px solid black;
+    border-radius: 32px;
+    background: #ffffff;
+}
+
+.colordemobig {
+    width: 44px;
+    height: 44px;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    border: 2px solid black;
+    border-radius: 44px;
+    background: #ffffff;
+}
+
+.colordemoh {
+    width: 56px;
+    height: 44px;
+    position: absolute;
+    border: 3px solid black;
+    border-radius: 56px;
+    background: #ffffff;
+}
+
+.colordemoeye {
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    border: 6px solid black;
+    border-radius: 44px;
+    border-color: #ffffff;
+}
+
+.selectorclass {
+    height: calc(100% - 120px);
+    max-height: 420px;
+    overflow: auto;
+    width: 416px;
+    position: absolute;
+    margin-left: 16px;
+    margin-right: 16px;
+    left: 196px;
+    right: 0;
+    top: 56px;
+    background: rgba(255, 255, 255, 0.6);
+    border: 2px solid black;
+    border-radius: 8px;
+}
+
+.selectorclasslist {
+    height: calc(100% - 54px);
+    overflow: auto;
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+.flagselectorclass {
+    height: calc(100% - 120px);
+    max-height: 420px;
+    overflow: auto;
+    width: 416px;
+    position: absolute;
+    margin-left: 16px;
+    margin-right: 16px;
+    left: 196px;
+    right: 0;
+    top: 56px;
+    background: rgba(255, 255, 255, 0.6);
+    border: 2px solid black;
+    border-radius: 8px;
+}
+
+.flagselectorclasslist {
+    height: calc(100% - 102px);
+    overflow: auto;
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    top: 48px;
+}
+
+.colorframe {
+    width: 64px;
+    height: 64px;
+    overflow: hidden;
+    position: absolute;
+    padding: 8px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+}
+
+.colorframe:active,
+.colorframe:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.selectcolorframe {
+    width: 64px;
+    height: 64px;
+    overflow: hidden;
+    position: absolute;
+    padding: 8px;
+    border-radius: 8px;
+    background: rgba(155, 0, 0, 0.8);
+    cursor: pointer;
+}
+
+.selectcolorframe:active,
+.selectcolorframe:hover {
+    background: rgba(155, 0, 0, 1);
+}
+
+.skinframe {
+    width: 96px;
+    height: 128px;
+    overflow: hidden;
+    position: absolute;
+    padding: 8px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.skinframeselected {
+    width: 96px;
+    height: 128px;
+    overflow: hidden;
+    position: absolute;
+    padding: 8px;
+    border-radius: 8px;
+    background: rgba(155, 0, 0, 0.6);
+}
+
+.skinSelectButton {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    width: 96px;
+    height: 40px;
+    box-sizing: border-box;
+    font-size: large;
+    color: white;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    background: #aa22ff;
+    border: 0;
+    cursor: pointer;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.skinSelectButton:active,
+.skinSelectButton:hover {
+    bottom: 7px;
+    background: #770099;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.skinLockedButton {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    width: 96px;
+    height: 40px;
+    box-sizing: border-box;
+    font-size: large;
+    color: white;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    background: #bb0000;
+    border: 0;
+    cursor: pointer;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.skinLockedButton:active,
+.skinLockedButton:hover {
+    bottom: 7px;
+    background: #990000;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+#skinSelector {
+    display: none;
+    width: 692px;
+    height: 80%;
+    max-height: 542px;
+    overflow: hidden;
+    position: absolute;
+    padding: 8px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #FFF;
+    font-size: 12px;
+    top: 32px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+#startMenuAd {
+    position: absolute;
+    display: block;
+    width: 300px;
+    height: 250px;
+    top: 192px;
+    right: calc(25% - 40px);
+    left: calc(50% + 40px);
+    margin-left: 128px;
+}
+
+.colorButton {
+    position: relative;
+    width: 192px;
+    bottom: 0px;
+    height: 40px;
+    box-sizing: border-box;
+    font-size: large;
+    color: white;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    background: #009900;
+    border: 0;
+    cursor: pointer;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.colorButton:active,
+.colorButton:hover {
+    bottom: -1px;
+    background: #005500;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.colorButtont {
+    position: relative;
+    width: 192px;
+    bottom: 0px;
+    height: 40px;
+    box-sizing: border-box;
+    font-size: large;
+    color: white;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    background: #005500;
+    border: 0;
+    cursor: pointer;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.colorButtont:active,
+.colorButtont:hover {
+    bottom: -1px;
+    background: #003300;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+#flagsearch {
+    width: 240px;
+    text-align: center;
+    padding: 10px;
+    border: solid 1px #cdcdcd;
+    transition: box-shadow 0.3s, border 0.3s;
+    box-sizing: border-box;
+    border-radius: 50px;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    margin-bottom: 4px;
+    margin-top: 4px;
+    outline: none;
+}
+
+#flagsearch:focus,
+#flagsearch.focus {
+    border: solid 1px #770000;
+    box-shadow: 0 0 3px 1px #770000;
+}
+
+.selectDoneButton {
+    position: relative;
+    width: 128px;
+    bottom: 0px;
+    height: 40px;
+    box-sizing: border-box;
+    font-size: large;
+    color: white;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    background: #009900;
+    border: 0;
+    cursor: pointer;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.selectDoneButton:active,
+.selectDoneButton:hover {
+    bottom: -1px;
+    background: #005500;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+#skinSelectButton {
+    position: relative;
+    margin: 15%;
+    margin-top: 4px;
+    width: 70%;
+    height: 48px;
+    box-sizing: border-box;
+    font-size: large;
+    color: white;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    background: #009000;
+    border: 0;
+    cursor: pointer;
+    border-radius: 50px;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    margin-bottom: 10px;
+}
+
+#skinSelectButton:active,
+#skinSelectButton:hover {
+    top: 1px;
+    background: #005000;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+#skinSelectButton2 {
+    position: absolute;
+    margin: auto;
+    bottom: 16px;
+    width: 260px;
+    height: 40px;
+    box-sizing: border-box;
+    font-size: large;
+    color: white;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    background: #ff4444;
+    border: 0;
+    cursor: pointer;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+#skinSelectButton2:active,
+#skinSelectButton2:hover {
+    bottom: 15px;
+    background: #991111;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.quotes {
+    display: none;
+    text-align: center;
+}
+
+.infobox {
+    -webkit-user-select: auto;
+    -moz-user-select: auto;
+    -khtml-user-select: auto;
+    -ms-user-select: auto;
+    -ms-user-select: auto;
+    user-select: auto;
+    display: none;
+    width: 50%;
+    max-height: 500px;
+    overflow: hidden;
+    position: absolute;
+    padding: 8px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #FFF;
+    font-size: 12px;
+    top: 96px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: left;
+}
+
+#status {
+    position: absolute;
+    padding: 8px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.4);
+    color: #FFF;
+    font-size: 16px;
+    top: 10px;
+    right: 10px;
+    text-align: center;
+    pointer-events: none;
+}
+
+#kills {
+    display: none;
+    position: absolute;
+    padding: 8px;
+    border-radius: 24px;
+    background: rgba(0, 0, 0, 0.4);
+    color: #FFF;
+    font-size: 16px;
+    bottom: 10px;
+    left: 10px;
+    text-align: center;
+}
+
+#credits2 {
+    position: absolute;
+    padding: 0px;
+    height: 48px;
+    background: rgba(0, 0, 0, 0);
+    color: #FFF;
+    font-size: 18px;
+    font-weight: bold;
+    bottom: 32px;
+    left: 16px;
+    display: none;
+}
+
+#credits {
+    position: absolute;
+    padding: 0px;
+    height: 160px;
+    background: rgba(0, 0, 0, 0);
+    color: #FFF;
+    font-size: 12px;
+    font-weight: bold;
+    bottom: 10px;
+    left: 10px;
+    display: none;
+}
+
+#credits a {
+    display: block;
+    margin: 4px;
+}
+
+#scoreline1 {
+    color: #ff8888;
+}
+
+.scorelineme {
+    color: #88ff88;
+}
+
+.scoreline {
+    color: #ffffff;
+}
+
+#score {
+    color: #ffffaa;
+    font-weight: bold;
+}
+
+#endMenuWrapper {
+    -webkit-transition: max-height 1s;
+    -moz-transition: max-height 1s;
+    -ms-transition: max-height 1s;
+    -o-transition: max-height 1s;
+    transition: max-height 1s;
+    overflow: hidden;
+    display: block;
+}
+
+#endMenu {
+    position: relative;
+    margin: auto;
+    margin-top: 12px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    overflow: hidden;
+    display: none;
+}
+
+#endMenu p {
+    padding: 0;
+    text-align: center;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+#startMenuSM {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+}
+
+#startMenuContact {
+    position: relative;
+    width: 120px;
+    float: right;
+}
+
+#startMenuContact3 {
+    position: relative;
+    width: 120px;
+    float: left;
+}
+
+#startMenuContact2 {
+    position: absolute;
+    width: 250px;
+    bottom: 8px;
+    right: 25%;
+    left: 50%;
+    margin-left: -125px;
+}
+
+#startMenuDownload {
+    position: relative;
+    margin: auto;
+    margin-top: 64px;
+    width: 640px;
+    padding: 20px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    box-sizing: border-box;
+}
+
+#startMenu {
+    position: relative;
+    margin: auto;
+    margin-top: 164px;
+    width: 300px;
+    padding: 24px;
+    padding-top: 24px;
+    padding-bottom: 16px;
+    border-radius: 16px;
+    -moz-border-radius: 16px;
+    -webkit-border-radius: 16px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    box-sizing: border-box;
+}
+
+#startMenu p {
+    padding: 0;
+    text-align: center;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+#playerNameInput {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    border: solid 1px #cdcdcd;
+    transition: box-shadow 0.3s, border 0.3s;
+    box-sizing: border-box;
+    border-radius: 50px;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    margin-bottom: 4px;
+    outline: none;
+}
+
+#playerNameInput:focus,
+#playerNameInput.focus {
+    border: solid 1px #770000;
+    box-shadow: 0 0 3px 1px #770000;
+}
+
+#startButton {
+    position: relative;
+    margin: 15%;
+    margin-top: 4px;
+    width: 70%;
+    height: 48px;
+    box-sizing: border-box;
+    font-size: large;
+    color: white;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    background: #900000;
+    border: 0;
+    cursor: pointer;
+    border-radius: 50px;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    margin-bottom: 10px;
+}
+
+#startButton:active,
+#startButton:hover {
+    top: 1px;
+    background: #700000;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+#logo {
+    width: 65%;
+    max-width: 760px;
+    height: auto;
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 44px;
+    margin: auto;
+}
+
+#startMenuWrapper {
+    -webkit-transition: max-height 1s;
+    -moz-transition: max-height 1s;
+    -ms-transition: max-height 1s;
+    -o-transition: max-height 1s;
+    transition: max-height 1s;
+    overflow: hidden;
+    display: none;
+}
+
+#startMenu h3 {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+#startMenu ul {
+    margin: 10px;
+    padding: 10px;
+    margin-top: 0;
+}
+
+#startMenu .input-error {
+    text-align: center;
+    color: red;
+    opacity: 0;
+    font-size: 12px;
+}
+
+#startMenuWrapper {
+    z-index: 2;
+}
+
+#game {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.startMenuMoreIO {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 4px;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+}
+
+.startMenuMoreIO:active,
+.startMenuMoreIO:hover {
+    background: rgba(0, 0, 0, 0.1);
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.smlogo {
+    background-image: url(../img/sm.png);
+    background-repeat: no-repeat;
+    display: block;
+    background-size: 144px;
+    position: absolute;
+}
+
+.smlogo-s {
+    width: 48px;
+    height: 48px;
+    background-position: 0px 0;
+}
+
+.lglogo {
+    background-image: url(../img/lg.png);
+    background-repeat: no-repeat;
+    display: block;
+    background-size: 128px;
+    position: absolute;
+}
+
+.lglogo-s {
+    width: 64px;
+    height: 64px;
+    background-position: 0px 0;
+    opacity: 0.6;
+    transition: opacity .15s ease-in-out;
+    -moz-transition: opacity .15s ease-in-out;
+    -webkit-transition: opacity .15s ease-in-out;
+}
+
+.lglogo-s:hover {
+    opacity: 1;
+}
+
+.spritec {
+    background-image: url(../img/skinsd.png);
+    background-repeat: no-repeat;
+    display: block;
+    background-size: 1536px;
+    position: absolute;
+    top: 222px;
+    left: 102px;
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
+
+.sprite {
+    background-image: url(../img/skinsd.png);
+    background-repeat: no-repeat;
+    display: block;
+    background-size: 1536px;
+    position: absolute;
+    top: 0px;
+    left: 8px;
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
+
+.sprite-skin {
+    width: 96px;
+    height: 96px;
+    background-position: 0px 0;
+}
+
+.spriteflag1 {
+    background-image: url(../img/flags1.png);
+    background-repeat: no-repeat;
+    display: block;
+    background-size: 2048px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.sprite-flag1 {
+    width: 64px;
+    height: 64px;
+    background-position: 0px 0;
+}
+
+.spriteflag2 {
+    background-image: url(../img/flags2.png);
+    background-repeat: no-repeat;
+    display: block;
+    background-size: 2048px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.sprite-flag2 {
+    width: 64px;
+    height: 64px;
+    background-position: 0px 0;
+}
+
+.spriteflag3 {
+    background-image: url(../img/flags3.png);
+    background-repeat: no-repeat;
+    display: block;
+    background-size: 2048px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.sprite-flag3 {
+    width: 64px;
+    height: 64px;
+    background-position: 0px 0;
+}

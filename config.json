@@ -1,0 +1,7 @@
+{
+	"FB_appId":"1603670153101897",
+	"FB_uploadAccessToken": "EAAYsfZAxiFmMBAFY2ax0Bl513rsCrCpG4CIkERBx1lBQSOiusnk5ZA80lyZB6BZBjj0EZAxVEOhh6x7M358sNb0X7CxtRxQ8SG8Jc4VHVZAezIZCS7eaQ1GnbsXXCPxZAEfJ7q21tvsZBhWEru3vm32YhU4wxCKKAtBOkR4ccDBCZBQgZDZD",
+	"outputFolder": "./build",
+	"archivesFolder": "./archives",
+	"sdkPath":"https://connect.facebook.net/en_US/fbinstant.6.2.js"
+}

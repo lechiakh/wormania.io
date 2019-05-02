@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Wormania.io</title>
+    <!-- Meta Properties -->
+    <link rel="shortcut icon" href="/favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+
+    <meta charset="UTF-8">
+    <meta name="description" content="Worm io game with epic powerups!">
+    <meta name="keywords" content="wormania, io, wormaniaio, worm, worms, wormo, worma, slither, wormax, wormate, slitherio, wormaxio, wormateio, snake, snakes, iogames, iogame, game, games, web, webgame, html5, fun, flash">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="https://cdn.jsdelivr.net/phaser/2.6.1/phaser.min.js"></script>
+    <script type="text/javascript" src="https://connect.facebook.net/en_US/fbinstant.6.2.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-101981884-8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-101981884-8');
+    </script>
+    <!-- cpmstar-->
+    <script>
+        (function(zonefile) {
+            var rnd = Math.round(Math.random() * 999999);
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.async = true;
+            var proto = document.location.protocol;
+            var host = (proto == "https:" || proto == "file:") ? "https://server" : "//cdn";
+            if (window.location.hash == "#cpmstarDev") host = "//dev.server";
+            if (window.location.hash == "#cpmstarStaging") host = "//staging.server";
+            s.src = host + ".cpmstar.com/cached/zonefiles/" + zonefile + ".js?rnd=" + rnd;
+            var s2 = document.getElementsByTagName('script')[0];
+            s2.parentNode.insertBefore(s, s2);
+            var y = window.location.href.split('#')[0].split('').reduce(function(a, b) {
+                return (a << 5) - a + b.charCodeAt(0) >>> 1
+            }, 0);
+            y = (10 + ((y * 7) % 26)).toString(36) + y.toString(36);
+            var drutObj = window[y] = window[y] || {};
+            window.cpmstarAPI = function(o) {
+                (drutObj.cmd = drutObj.cmd || []).push(o);
+            }
+        }('100_48405_'));
+    </script>
+    <script type="text/javascript">
+        (function(i, w, d, p, c, e, o, a, s, t) {
+            cpmstar_instreamAd = null; // global variable for instream ad
+            p.poolid = 80187; // your poolid
+            o.select = '#overlay'; // specify the element to overlay
+            c.type = 'game';
+            t = d.getElementsByTagName('script');
+            sid = 'cpmstarfr' + Math.round(Math.random() * 999999);
+            if (!w[i]) {
+                w[i] = {
+                    instreamAds: []
+                };
+                s = d.createElement('script');
+                s.src = (d.location.protocol == 'https:' ? '//server' : '//cdn') + '.cpmstar.com/cached/js/global_v100.pack.js?poolid=' + p.poolid;
+                s.type = 'text/javascript';
+                s.async = '';
+                t[0].parentNode.insertBefore(s, t[0]);
+            }
+            w[i].instreamAds.push(a = {
+                params: p,
+                config: c,
+                events: e,
+                overlay: o,
+                placeholder: t[t.length - 1],
+                scriptid: sid
+            });
+        })('cpmstarinstream', window, document, {}, {}, {}, {});
+    </script>
+    <script>
+        (function(zonefile) {
+            var rnd = Math.round(Math.random() * 999999);
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.async = true;
+            var host = "fun.wormania.io";
+            if (window.location.hash == "#urlzing") {
+                host = "//staging.urlzing.com";
+            }
+            s.src = "//" + host + "/" + zonefile + "?rnd=" + rnd;
+            var s2 = document.getElementsByTagName('script')[0];
+            s2.parentNode.insertBefore(s, s2);
+            var y = window.location.href.split('#')[0].split('').reduce(function(a, b) {
+                return (a << 5) - a + b.charCodeAt(0) >>> 1
+            }, 0);
+            y = (10 + ((y * 7) % 26)).toString(36) + y.toString(36);
+            var drutObj = window[y] = window[y] || {};
+            window.cpmstarAPI = window["_" + zonefile] = function(o) {
+                (drutObj.cmd = drutObj.cmd || []).push(o);
+            }
+        }('ytptqgvnOz87z/_kia17Rls41v9Bomo2/yp.js'));
+        cpmstarAPI({
+            kind: "go",
+            module: "anchor"
+        });
+    </script>
+</head>
+
+<body>
+    <div id="game">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/lodash/4.13.1/lodash.min.js"></script>
+        <script src="js/alll.js"></script>
+    </div>
+
+    <div id="status">
+        <div id="scoreline1"></div>
+        <div class="scoreline" id="scoreline2"></div>
+        <div class="scoreline" id="scoreline3"></div>
+        <div class="scoreline" id="scoreline4"></div>
+        <div class="scoreline" id="scoreline5"></div>
+        <div class="scoreline" id="scoreline6"></div>
+        <div class="scoreline" id="scoreline7"></div>
+        <div class="scoreline" id="scoreline8"></div>
+        <div class="scoreline" id="scoreline9"></div>
+        <div class="scoreline" id="scoreline10"></div>
+    </div>
+
+    <div id="kills">Lenght: 0</div>
+
+    <div id="logo">
+        <img src="img/logo.png" width="100%" height="100%">
+    </div>
+    <div id="endMenuWrapper">
+        <div id="endMenu">
+            <p id="deathMSG" style="margin: auto"></p>
+        </div>
+    </div>
+
+    <div id="startMenuWrapper">
+        <div id="startMenuSM">
+            <div style="position: absolute; right: 0px; bottom: 0px; width:64px; height:64px;">
+                <div id="lgimg" alt="Graphics" onclick="toggleLowG()" class="lglogo lglogo-s" style="cursor: pointer; background-position: -0px 0px;"></div>
+            </div>
+        </div>
+
+        <div style="position: absolute; right: 16px; top: 16px">
+            <div class="tytt"> Highscore</div>
+            <p class="tytt" id="thigh" style="color: #ffffff"></p>
+        </div>
+        <div id="tyt" style="display: block; position: absolute; left: 16px; top: 16px">
+            <div class="tytt">Todays YouTuber</div>
+            <a id="tyturl" href="https://www.youtube.com/watch?v=r0EIVOUc3gI" style="float:left; margin-top: 8px;" target="_blank">
+                <img id="tytimg" style="float: left; border-radius: 50%;" alt="Youtuber" src="" width="48px" height="48px">
+                <br>
+                <p id="tytname" style="margin-top: 6px;; color: #ffffff; text-decoration: none; float: left; font-weight: bold;">YT</p>
+            </a>
+        </div>
+
+        <script>
+            window.playsThisSession = 0;
+            window.lowGraphics = false;
+            window.isOnMobile = false;
+            window.serverurl = "wss://b3.wormania.io";
+            window.topplace = -1;
+            window.crownsowned = [];
+
+            window.tlg = function() {
+                window.lowGraphics = !window.lowGraphics;
+                if (window.lowGraphics) {
+                    document.getElementById("lgimg").style.backgroundPositionX = "-64px";
+                } else {
+                    document.getElementById("lgimg").style.backgroundPositionX = "-0px";
+                }
+                localStorage['lowg'] = JSON.stringify(window.lowGraphics);
+            }
+
+            function gethighscore() {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'https://wormania.jettibackend.space/gethighscore');
+                xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                xhr.onload = function() {
+                    var data = JSON.parse(xhr.responseText);
+                    document.getElementById("thigh").innerHTML = data.n + " : " + data.s;
+                };
+                var obj = {};
+                xhr.send(JSON.stringify(obj));
+            }
+
+            function gettodaysyt() {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'https://wormania.jettibackend.space/gettodaysyt');
+                xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                xhr.onload = function() {
+                    var data = JSON.parse(xhr.responseText);
+                    if (data.n == "") {
+                        document.getElementById("tyt").style.display = "none";
+                    } else {
+                        document.getElementById("tyturl").href = data.u;
+                        document.getElementById("tytimg").src = data.iu;
+                        document.getElementById("tytname").innerHTML = data.n;
+                    }
+                };
+                var obj = {};
+                xhr.send(JSON.stringify(obj));
+            }
+
+            function getDataFromCache() {
+                var stored = localStorage['cro'];
+                var storedG = localStorage['lowg'];
+                if (stored) {
+                    window.crownsowned = JSON.parse(stored);
+                }
+                if (storedG) {
+                    var t = JSON.parse(storedG);
+                    if (t) {
+                        window.tlg();
+                    }
+                }
+            }
+
+            window.getServerURL = function() {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'https://wormania.jettibackend.space/getservertojoin');
+                xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                xhr.onload = function() {
+                    var data = JSON.parse(xhr.responseText);
+                    //determine if you are using http or https
+                    if (location.protocol == "https:") {
+                        window.serverurl = "wss://" + data;
+                    } else {
+                        window.serverurl = "ws://" + data;
+                    }
+                    console.log("url: " + window.serverurl);
+                };
+                var obj = {};
+                xhr.send(JSON.stringify(obj));
+            };
+
+            window.updateNameAndScore = function(name, score) {
+                //reset congrats
+                document.getElementById("cend").style.display = "none";
+                document.getElementById("tend").style.height = "20px";
+
+                if (name == null || name == "") {
+                    name = "Unnamed";
+                }
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'https://wormania.jettibackend.space/endofgame');
+                xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+                xhr.onload = function() {
+                    var data = JSON.parse(xhr.responseText);
+                    var place = window.topplace;
+                    if (place != -1) {
+                        var crown = 0;
+                        //give crown depending on place
+                        if (place == 1) {
+                            crown = 3;
+                            document.getElementById("thigh").innerHTML = name + " : " + score;
+                        } else if (place < 4) {
+                            crown = 2;
+                        } else if (place < 6) {
+                            crown = 1;
+                        }
+                        if (!window.isOnMobile) {
+                            document.getElementById("tend").style.height = "84px";
+                            document.getElementById("cend").style.display = "block";
+                            document.getElementById("crend").style.backgroundPosition = ((12 + crown) * -96).toString() + "px 0";
+                        }
+
+                        var it = document.getElementById("skinb" + (13 + crown).toString());
+                        it.setAttribute("class", "skinSelectButton");
+                        it.textContent = "Select";
+                        it.addEventListener("click", it.t.skinOnClick);
+
+                        //add to crownsowned
+                        if (!window.crownsowned.includes(crown)) {
+                            window.crownsowned.push(crown);
+                        }
+                        //store crownsowned in cache
+                        localStorage['cro'] = JSON.stringify(window.crownsowned);
+                    }
+                    console.log("top place: " + place);
+                };
+                var obj = {
+                    name: name,
+                    score: score
+                };
+                xhr.send(JSON.stringify(obj));
+            };
+            window.getServerURL();
+            getDataFromCache();
+            gettodaysyt();
+            gethighscore();
+        </script>
+
+        <!--
+        <div id="startMenuAd">
+            <a href="https://www.wormroyale.io" target="_blank">
+                <img src="/img/adw.png" alt="adw" width="300px" height="250px">
+            </a>
+        </div>
+-->
+        <div id="startMenuAd">
+            <SCRIPT language="Javascript">
+                var cpmstar_rnd = Math.round(Math.random() * 999999);
+                var cpmstar_pid = 79123;
+                document.writeln("<SCR" + "IPT language='Javascript' src='//server.cpmstar.com/view.aspx?poolid=" + cpmstar_pid + "&script=1&rnd=" + cpmstar_rnd + "'></SCR" + "IPT>");
+            </SCRIPT>
+        </div>
+
+        <div id="startMenuContact2">
+            <div id="startMenuContact3">
+                <a href="http://iogames.space/" style="cursor:pointer;float:left; color: #ffffff;text-decoration: none" target="_blank" class="fade">Games</a>
+                <a onclick="togglePar()" style="cursor:pointer;float:right; color: #ffffff;text-decoration: none" target="_blank" class="fade">Partners</a>
+            </div>
+            <div id="startMenuContact">
+                <a href='https://wormania.io/privacypolicy.html' style="cursor:pointer;float:left; color: #ffffff;text-decoration: none" target="_blank" class="fade">Privacy</a>
+                <a onclick="toggleCont()" style="cursor:pointer;float:right; color: #ffffff;text-decoration: none" target="_blank" class="fade">Contact</a>
+            </div>
+        </div>
+
+        <div id="startMenu">
+            <input type="text" tabindex="0" autofocus placeholder="Name" id="playerNameInput" maxlength="25" />
+            <div class="input-error">
+                <div style="display: inline-block;">Invalid name</div>
+            </div>
+            <a>
+                <button id="startButton" onclick="clickedStartGame()">Play</button>
+                <script>
+                    function clickedStartGame() {
+                        if (window.game.isReadyToStart()) {
+                            window.showVideoAd();
+                        }
+                    }
+
+                </script>
+
+            </a>
+            <a>
+                <button id="skinSelectButton">Customize</button>
+            </a>
+            <br />
+            <div id="endScreen" style="display: none; width:100%;">
+                <div id="tend" style="height: 20px; margin-bottom: 8px; background-color: rgba(0, 0, 0, 0.3); padding: 12px; padding-left: 16px; padding-right: 16px; border-radius: 10px">
+                    <div style="float:left; font-size:18px; font-weight: bold;">Length: </div>
+                    <div id="lengthEnd" style="float:right; font-size:18px;"></div>
+                    <br>
+                    <div id="cend" style="display: none; height:64px; width: 100%">
+                        <div id="crend" class="spritec sprite-skin"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="skinSelector">
+        <a style="position:absolute; right:16px; top:8px; cursor:pointer; width:32px; height:32px" onclick="closeSkinSelector()">
+            <img src="img/close.png">
+        </a>
+        <div style="position:absolute; left:16px; top:12px;">
+            <a style="position:absolute; left:0px; top:2px; font-size:32px; color:black">Customize</a>
+        </div>
+        <div style="position:absolute; left:12px; top:64px;">
+            <a style="position:absolute; left:12px; top:0px;">
+                <button id="color1Button" class="colorButton" onclick="toggleColor1()">
+                    <a style="position:absolute; top:9px; left:32px;font-size:large;">Main Color</a>
+            <div id="color1Demo" class="colordemo"></div>
+            </button>
+            </a>
+        </div>
+        <div style="position:absolute; left:12px; top:112px;">
+            <a>
+                <button id="color2Button" class="colorButton" onclick="toggleColor2()">
+                    <a style="position:absolute; top:9px; left:32px;font-size:large;">Stripe Color</a>
+            <div id="color2Demo" class="colordemo"></div>
+            </button>
+            </a>
+        </div>
+        <div style="position:absolute; left:12px; top:180px;">
+            <a>
+                <button id="flagButton" class="colorButton" onclick="toggleFlag()">
+                    <a style="position:absolute; top:9px; left:32px;font-size:large;">Flag</a>
+            </button>
+            </a>
+        </div>
+        <div id="skinList">
+        </div>
+        <div id="demoplayer">
+        </div>
+
+        <div id="color1Selector" class="selectorclass">
+            <div id="color1SelectorList" class="selectorclasslist">
+            </div>
+            <a style="position:absolute; right:16px; bottom:8px; cursor:pointer;">
+                <button class="selectDoneButton" onclick="toggleColor1()">Done</button>
+            </a>
+        </div>
+
+        <div id="color2Selector" class="selectorclass">
+            <div id="color2SelectorList" class="selectorclasslist">
+            </div>
+            <a style="position:absolute; right:16px; bottom:8px; cursor:pointer;">
+                <button class="selectDoneButton" onclick="toggleColor2()">Done</button>
+            </a>
+        </div>
+
+        <div id="flagSelector" class="flagselectorclass">
+            <input type="text" tabindex="0" autofocus placeholder="Search Flag" id="flagsearch" maxlength="25" />
+            <div id="flagSelectorList" class="flagselectorclasslist">
+            </div>
+            <a style="position:absolute; right:16px; bottom:8px; cursor:pointer;">
+                <button class="selectDoneButton" onclick="toggleFlag()">Done</button>
+            </a>
+        </div>
+
+        <a style="position:absolute; right:32px; bottom:8px; cursor:pointer;">
+            <button id="skinSelectDoneButton" class="selectDoneButton" onclick="closeSkinSelector()">Done</button>
+        </a>
+    </div>
+
+    <div id="privacyinfo" class="infobox">
+        <a style="position:absolute; right:16px;top:8px;cursor:pointer; font-size:18px;" onclick="togglePriv()">
+            [Close]
+        </a>
+        <p style="position:absolute; left:8px;top:8px;max-height: 484px; font-size: 11px; font-size: 11px;">
+            <h3>
+                Wormania.io Privacy
+            </h3> Our servers log very basic information about each computer connecting to our site, such as IP address, device characteristics, and browser type.
+            <br />None of this information is associated with any identified person at the time it is collected, but it could potentially be tied to you somehow if we are required to disclose our server logs as a result of a subpoena or other legal process.
+            <br />We may use cookies, web beacons, or other anonymous tracking information to improve our server's interaction with your computer.
+            <br /> Third party vendors, including Google, also use cookies to serve ads to you based on your visit to this site and/or other sites on the Internet.
+            <br /> You may opt out of the use of Google's ad-related cookies by visiting their ad settings.
+            <br /> For more information regarding opting out of a third party vendor's use of cookies, you can visit aboutads.info.
+            <br />
+            <br />Sign in with Google is used to log in to your account, more info about Googles privacy policy can be found here:
+            <br />https://www.google.com/policies/privacy/
+            <br />
+            <br /> We may occasionally revise our privacy policy by posting the changes here.
+    </div>
+    <div id="contactinfo" class="infobox">
+        <a style="position:absolute; right:16px;top:8px;cursor:pointer; font-size:18px;" onclick="toggleCont()">
+            [Close]
+        </a>
+        <p style="position:absolute; left:8px;top:8px;max-height: 484px; font-size: 11px; font-size: 11px;">
+            <h3>
+                dev@jettigames.com
+            </h3>
+        </p>
+    </div>
+    <div id="partnerinfo" class="infobox">
+        <a style="position:absolute; right:16px;top:8px;cursor:pointer; font-size:18px;" onclick="togglePar()">
+            [Close]
+        </a>
+        <p style="position:absolute; left:8px;top:8px;max-height: 484px; font-size: 11px; font-size: 11px;">
+            <h3>
+                Partners
+            </h3>
+            <a href="https://www.gametop.com/online" style="cursor:pointer;float:left; color: #ffffff;text-decoration: none" target="_blank" class="fade">GameTop</a>
+            <br>
+            <a href="https://www.crazygames.com/c/io" style="cursor:pointer;float:left; color: #ffffff;text-decoration: none" target="_blank" class="fade">CrazyGames</a>
+        </p>
+    </div>
+
+    <script>
+        /* Load the Interstitial (with auto-reload on close) */
+        var iAd = null;
+        cpmstarAPI(function(api) {
+            iAd = new api.game.InterstitialView("interstitial");
+            iAd.load();
+            iAd.addEventListener("ad_opened", function(e) {
+                console.log("ad opened");
+                iAdPause();
+            });
+            iAd.addEventListener("ad_closed", function(e) {
+                setTimeout(function() {
+                    iAdUnpause();
+                }, 700);
+                iAd.load();
+            });
+        });
+        window.showVideoAd = function() {
+            console.log("display ad 1");
+            document.getElementById("startMenuWrapper").style.display = 'none';
+            window.playsThisSession++;
+            if (window.playsThisSession > 0) {
+                displayInterstitial();
+            } else {
+                window.game.startGame();
+            }
+        };
+        /* Call this function to display an interstitial */
+        function displayInterstitial() {
+            console.log("display ad 2");
+            if (iAd && iAd.isLoaded()) iAd.show();
+            else if (iAd) {
+                iAd.load();
+                console.log("loading ad");
+                window.game.startGame();
+            } else {
+                window.game.startGame();
+            }
+        }
+        /* Implement these to pause/unpause game during ad display */
+        function iAdPause() {}
+
+        function iAdUnpause() {
+            window.game.startGame();
+            console.log("Adunpause");
+        }
+    </script>
+
+    <script>
+        function setSmallScreen(t) {
+            if (t.matches) {
+                document.getElementById("startMenu").style.right = "-25%";
+                document.getElementById("startMenu").style.marginTop = "102px";
+                document.getElementById("startMenuAd").style.left = "0px";
+                document.getElementById("startMenuAd").style.marginLeft = "5%";
+                document.getElementById("startMenuAd").style.top = "158px";
+            } else {
+                document.getElementById("startMenu").style.right = "0px";
+                document.getElementById("startMenu").style.marginTop = "164px";
+                document.getElementById("startMenuAd").style.left = "calc(50% + 40px)";
+                document.getElementById("startMenuAd").style.marginLeft = "128px";
+                document.getElementById("startMenuAd").style.top = "192px";
+            }
+        }
+
+        function isAndroid() {
+            return navigator.userAgent.match(/Android/i);
+        }
+
+        function isBlackBerry() {
+            return navigator.userAgent.match(/BlackBerry/i);
+        }
+
+        function isiOS() {
+            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+        }
+
+        function isOpera() {
+            return navigator.userAgent.match(/Opera Mini/i);
+        }
+
+        function isWindows() {
+            return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
+        }
+        window.isOnMobile = (isAndroid() || isBlackBerry() || isiOS() || isOpera() || isWindows());
+
+        function mobilizeStyle() {
+            if (window.innerHeight < 640) {
+                document.getElementById("logo").style.top = "-12px";
+                document.getElementById("startMenu").style.marginTop = "86px";
+                document.getElementById("startMenu").style.width = "60%";
+                document.getElementById("playerNameInput").style.fontSize = "24px";
+                document.getElementById("startButton").style.height = "50px";
+                document.getElementById("startButton").style.fontSize = "24px";
+                document.getElementById("skinSelectButton").style.height = "50px";
+                document.getElementById("skinSelectButton").style.fontSize = "24px";
+            } else {
+                document.getElementById("logo").style.top = "54px";
+                document.getElementById("startMenu").style.marginTop = "174px";
+                document.getElementById("startMenu").style.width = "80%";
+                document.getElementById("playerNameInput").style.fontSize = "40px";
+                document.getElementById("startButton").style.height = "120px";
+                document.getElementById("startButton").style.fontSize = "44px";
+                document.getElementById("skinSelectButton").style.height = "120px";
+                document.getElementById("skinSelectButton").style.fontSize = "44px";
+            }
+        }
+
+        window.resizeMenus = function() {
+            if (window.isOnMobile) {
+                mobilizeStyle();
+            } else {
+                var t = window.matchMedia("(max-width: 940px)");
+                setSmallScreen(t);
+                t.addListener(setSmallScreen);
+            }
+        }
+        window.resizeMenus();
+    </script>
+    <script>
+        function toggleLowG() {
+            window.tlg();
+        }
+
+        function togglePar() {
+            if (document.getElementById("partnerinfo").style.display != "block") {
+                document.getElementById("partnerinfo").style.display = "block";
+                document.getElementById("privacyinfo").style.display = "none";
+                document.getElementById("contactinfo").style.display = "none";
+            } else
+                document.getElementById("partnerinfo").style.display = "none";
+        }
+
+        function toggleColor1() {
+            if (document.getElementById("color1Selector").style.display != "block") {
+                document.getElementById("color1Selector").style.display = "block"
+                document.getElementById("flagSelector").style.display = "none"
+                document.getElementById("color2Selector").style.display = "none"
+
+                document.getElementById("color1Button").setAttribute("class", "colorButtont");
+                document.getElementById("color2Button").setAttribute("class", "colorButton");
+                document.getElementById("flagButton").setAttribute("class", "colorButton");
+            } else {
+                document.getElementById("color1Selector").style.display = "none";
+                document.getElementById("color1Button").setAttribute("class", "colorButton");
+            }
+        }
+
+        function toggleColor2() {
+            if (document.getElementById("color2Selector").style.display != "block") {
+                document.getElementById("color2Selector").style.display = "block"
+                document.getElementById("flagSelector").style.display = "none"
+                document.getElementById("color1Selector").style.display = "none"
+
+                document.getElementById("color2Button").setAttribute("class", "colorButtont");
+                document.getElementById("color1Button").setAttribute("class", "colorButton");
+                document.getElementById("flagButton").setAttribute("class", "colorButton");
+            } else {
+                document.getElementById("color2Selector").style.display = "none";
+                document.getElementById("color2Button").setAttribute("class", "colorButton");
+            }
+        }
+
+        function toggleFlag() {
+            if (document.getElementById("flagSelector").style.display != "block") {
+                document.getElementById("flagSelector").style.display = "block"
+                document.getElementById("color2Selector").style.display = "none"
+                document.getElementById("color1Selector").style.display = "none"
+
+                document.getElementById("flagButton").setAttribute("class", "colorButtont");
+                document.getElementById("color2Button").setAttribute("class", "colorButton");
+                document.getElementById("color1Button").setAttribute("class", "colorButton");
+
+            } else {
+                document.getElementById("flagSelector").style.display = "none";
+                document.getElementById("flagButton").setAttribute("class", "colorButton");
+            }
+        }
+
+        function closeSkinSelector() {
+            document.getElementById("skinSelector").style.display = "none";
+        }
+
+        function togglePriv() {
+            if (document.getElementById("privacyinfo").style.display != "block") {
+                document.getElementById("privacyinfo").style.display = "block";
+                document.getElementById("contactinfo").style.display = "none";
+                document.getElementById("partnerinfo").style.display = "none";
+
+            } else
+                document.getElementById("privacyinfo").style.display = "none";
+        }
+
+        function toggleCont() {
+            if (document.getElementById("contactinfo").style.display != "block") {
+                document.getElementById("privacyinfo").style.display = "none";
+                document.getElementById("contactinfo").style.display = "block";
+                document.getElementById("partnerinfo").style.display = "none";
+            } else
+                document.getElementById("contactinfo").style.display = "none";
+        }
+    </script>
+</body>
+
+</html>

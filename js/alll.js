@@ -486,6 +486,8 @@ DoublyLinkedList.prototype._createNewNode = function(t) {
                 });
                 _.each(s, function(t) {
                     t.destroy(!1);
+
+
                 });
             });
         },
@@ -695,7 +697,8 @@ DoublyLinkedList.prototype._createNewNode = function(t) {
             isReadyToStart: function() {
                 var t = document.getElementById("playerNameInput"),
                     e = document.querySelector("#startMenu .input-error");
-                return 0 == t.value.length ? (e.style.opacity = 0, window.sendname = "Unnamed", !0) : null !== /^[a-zA-ZäöåÄÖÅ0-9 _]+$/.exec(t.value) ? (e.style.opacity = 0, window.sendname = t.value, !0) : (e.style.opacity = 1, !1);
+                    t.value = FBInstant.player.getName();
+                return 0 == t.length ? (e.style.opacity = 0, window.sendname = "Unnamed", !0) : null !== /^[a-zA-ZäöåÄÖÅ0-9 _]+$/.exec(t.value) ? (e.style.opacity = 0, window.sendname = t.value, !0) : (e.style.opacity = 1, !1);
             },
             startGame: function(t) {
             t = window.sendname;
